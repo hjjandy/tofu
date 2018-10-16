@@ -1092,7 +1092,22 @@ public final class OnFlyCallGraphBuilder
                     else if( subSig == sigExecute  ) {
                         addVirtualCallSite( s, m, receiver, iie, sigDoInBackground,
                                 Kind.ASYNCTASK );
-                    }
+                    } else {
+						String mName = iie.getMethod().getName();
+						if (mName.startsWith("run") || mName.startsWith("set") || mName.startsWith("post") || mName.startsWith("execute")) {
+							int nParam = iie.getMethod().getParameterCount();
+							for (int i = 0; i < nParam; i++) {
+								Type ptype = iie.getMethod().getParameterType(i);
+								if (clRunnable.equals(ptype)) {
+									Value runnable = iie.getArg(i);
+									if (runnable instanceof Local) {
+										addVirtualCallSite( s, m, (Local) runnable, iie, sigRun,
+															Kind.EXECUTOR );
+									}
+								}
+							}
+						}
+					}
                 } else if (ie instanceof DynamicInvokeExpr) {
                 	if(options.verbose())
                 		G.v().out.println("WARNING: InvokeDynamic to "+ie+" not resolved during call-graph construction.");

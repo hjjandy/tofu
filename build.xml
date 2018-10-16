@@ -53,6 +53,9 @@
            		<pathelement location="${dexlib-utils.jar}"/>
         		
            		<pathelement location="${guava.jar}"/>
+           		<pathelement location="${infoflow.jar}"/>
+           		<pathelement location="${flowdroid.jar}"/>
+           		<pathelement location="${axml20.jar}"/>
 			</classpath>
             <src path="src"/>
             <src path="generated/singletons"/>
@@ -380,7 +383,7 @@
            <attribute name="Implementation-Version" value="${soot.version}"/>
         </manifest>
 
-        <jar destfile="${release.loc}/soot-${soot.version}.jar" manifest="META-INF/MANIFEST.MF">
+        <jar destfile="${release.loc}/tofu-${soot.version}.jar" manifest="META-INF/MANIFEST.MF">
             <zipfileset src="${release.loc}/sootclasses-${soot.version}.jar"/>
             <zipfileset src="${jasmin.jar}"/>
             <zipfileset src="${heros.jar}"/>
@@ -393,6 +396,9 @@
 			<zipfileset src="${slf4j-api.jar}"/>
        		<zipfileset src="${slf4j-simple.jar}"/>
        		<zipfileset src="${guava.jar}"/>
+			<zipfileset src="${infoflow.jar}" />
+			<zipfileset src="${flowdroid.jar}" />
+			<zipfileset src="${axml20.jar}" />
         </jar>
 		<delete dir="META-INF"/>
     </target>

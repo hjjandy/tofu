@@ -1106,7 +1106,7 @@ public class DexPrinter {
 				//(at least not if it exists with exactly this name)
 				if (assignment.getLocal().getName().equals("this"))
 					continue;
-				addRegisterAssignmentDebugInfo(assignment, seenRegisters, builder);
+				//addRegisterAssignmentDebugInfo(assignment, seenRegisters, builder);
 			}
 		}
     	
@@ -1155,12 +1155,12 @@ public class DexPrinter {
             if (registerAssignmentTag != null)
             {
 				//Add start local debugging information: Register -> Local assignment
-        		addRegisterAssignmentDebugInfo(registerAssignmentTag, seenRegisters, builder);
+        		//addRegisterAssignmentDebugInfo(registerAssignmentTag, seenRegisters, builder);
             }
 		}
 		
-		for (int registersLeft : seenRegisters.values())
-			builder.addEndLocal(registersLeft);
+//		for (int registersLeft : seenRegisters.values())
+//			builder.addEndLocal(registersLeft);
 		
 		toTries(activeBody.getTraps(), stmtV, builder, labelAssinger);
         
